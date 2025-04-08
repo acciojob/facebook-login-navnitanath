@@ -1,8 +1,104 @@
-<html>
-  <head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Facebook Login</title>
-  </head>
-  <body>
-    <!-- Write your code here -->
-  </body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            background-color: #f6f6f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        .left {
+            width: 450px;
+            margin-top: 70px;
+            display: inline-block;
+        }
+        .left img {
+            width: 250px;
+        }
+        .left p {
+            font-size: 20px;
+            color: #000;
+            margin-top: 10px;
+        }
+        .right {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px #ccc;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+        }
+        .right input {
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100%;
+        }
+        .right button {
+            background-color: #1877f2;
+            border-radius: 5px;
+            padding: 10px 20px;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+        .right a {
+            text-decoration: none;
+            color: #1877f2;
+            font-size: 14px;
+            text-align: center;
+            display: block;
+        }
+        .signup {
+            background-color: #42b72a;
+            border-radius: 5px;
+            padding: 10px;
+            color: white;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="left">
+        <img src="data:image/png;base64,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" alt="Facebook logo">
+        <p>Facebook helps you connect and share with the people in your life.</p>
+    </div>
+    <div class="right">
+        <form>
+            <input type="text" id="email" placeholder="Email address or phone number">
+            <input type="password" id="password" placeholder="Password">
+            <button type="submit">Log in</button>
+            <a href="#">Forgotten account?</a>
+        </form>
+        <button class="signup">Create new account</button>
+    </div>
+</div>
+
+</body>
 </html>
